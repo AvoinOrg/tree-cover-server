@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+<!--
+- want a ul, probably with some pagination
+- want to introduce some ifelse or gradient logic for the colours
+
+-->
+
+{% block content %}
+{{ super() }}
+<div class="container">
+    <div class="page-header">
+        <h1>Analysis of {{ file_name }}!</h1>
+    </div>
+    <table class="table table-hover table-sm table-active">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Coordinates</th>
+          <th scope="col">Operator</th>
+          <th scope="col">Predicted</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t_cls, id, loc, man, pred in data.itertuples(index=False) %}
+        <tr class={{ t_cls }}>
+          <th scope="row">{{ id }}</th>
+          <td>{{ loc }}</td>
+          <td>{{ man }}</td>
+          <td>{{ pred }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}
