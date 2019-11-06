@@ -1,0 +1,3 @@
+[submodule "tree-cover"]
+	path = tree-cover
+	url = git@github.com:lytefm/tree-cover.git

@@ -6,4 +6,4 @@ from wtforms import SubmitField
 class FileForm(FlaskForm):
     # name = StringField('Please upload your data as .csv file', validators=[DataRequired()])
     file = FileField(validators=[FileRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField("Submit")
