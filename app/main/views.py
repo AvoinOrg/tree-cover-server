@@ -71,3 +71,25 @@ def see_only(file_n, disc):
 
 
     return render_template("partial_result_list.html", file_name=file_n, data=df, discrep=disc)
+
+
+
+#downloads only partial results
+@main.route("/<disc>/<file_n>/down")
+def download_only(file_n, disc):
+
+    csv_name = "results_" + file_n
+    csv = os.path.abspath("files")
+    f_path = os.path.join("files", csv_name)
+
+    df = pd.read_csv(f_path, engine='python')
+    df = df.drop('Unnamed: 0', axis=1)
+    df = df.round(9)
+    df = df[df['class'] == disc]
+
+    csv_n = disc +"_"+ file_n
+
+    dpath = os.path.join("files",csv_n)
+    df.to_csv(dpath)
+
+    return send_from_directory(csv, filename=csv_n, as_attachment=True)
