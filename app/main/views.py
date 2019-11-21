@@ -8,6 +8,7 @@ from .process_data import process_file
 from werkzeug.utils import secure_filename
 
 from flask import send_from_directory
+import pandas as pd
 
 @main.route("/", methods=["GET", "POST"])  # or e.g. /upload if want other home page
 def index():
