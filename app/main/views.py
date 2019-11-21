@@ -48,4 +48,25 @@ def get_csv(csv_id):
     except Exception as e:
             flash("Error during download")
             raise e
-    
+  
+
+#divides results based on difference
+@main.route("/<disc>/<file_n>")
+def see_only(file_n, disc):
+
+    csv_name = "results_" + file_n
+    csv = os.path.abspath("files")
+    f_path = os.path.join("files", csv_name)
+
+    df = pd.read_csv(f_path, engine='python')
+    df = df.drop('Unnamed: 0', axis=1)
+    df = df.round(9)
+
+    if (disc == "complete"): 
+        return render_template("result_list.html", file_name=file_n, data=df)
+
+
+    df = df[df['class'] == disc]
+
+
+    return render_template("partial_result_list.html", file_name=file_n, data=df, discrep=disc)
