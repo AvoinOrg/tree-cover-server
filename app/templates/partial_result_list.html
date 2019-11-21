@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+<!--
+- want a ul, probably with some pagination
+- want to introduce some ifelse or gradient logic for the colours
+https://www.google.com/maps/search/?api=1&query=-24.690932,150.9439172&zoom=18&basemap=sattelite
+-->
+
+{% block content %}
+{{ super() }}
+
+
+<style>
+
+tbody {
+    display:block;
+    height:445px;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+
+</style>
+
+
+<div class="container">
+    <div class="page-header">
+        <h1>Analysis of {{ file_name }} "{{ discrep }}"</h1>
+        
+        Clicking a row opens the location in Google Maps
+    </div>
+    <table class="table table-hover table-sm table-active">
+      <thead>
+        <tr>
+          <th scope="col">plot ID</th>
+          <th scope="col">Longitude</th>
+          <th scope="col">Latitude</th>
+          <th scope="col">Operator</th>
+          <th scope="col">Predicted</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t_cls, id, lon, lat, man, pred in data.itertuples(index=False) %}
+        <tr class={{ t_cls }} onclick={window.open("https://www.google.com/maps/search/?api=1&query="+{{lat}}+","+{{lon}}+"&zoom=18&basemap=sattelite")}>
+          <th scope="row">{{ id }}</th>
+          <td>{{ lon }}</td>
+          <td>{{ lat }}</td>
+          <td>{{ man }}</td>
+          <td>{{ pred }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+    <a href=/warning/{{ file_name }} >
+      <button type="button" style="float: right;color:rgb(255, 156, 64)">Warning</button> 
+    </a>
+    <a href=/info/{{ file_name }} >
+      <button type="button" style="float: right;color:rgb(106, 182, 253)">Info</button> 
+    </a>
+    <a href=/success/{{ file_name }}>
+      <button type="button" style="float: right;color:rgb(26, 194, 96)">Success</button> 
+    </a>
+    <a href="/complete/{{ file_name }}">
+      <button type="button" style="float: right;color:rgb(0, 0, 0)">Complete</button> 
+    </a>
+
+    
+</div>
+{% endblock %}
