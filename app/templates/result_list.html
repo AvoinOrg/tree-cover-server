@@ -8,6 +8,24 @@ https://www.google.com/maps/search/?api=1&query=-24.690932,150.9439172&zoom=18&b
 
 {% block content %}
 {{ super() }}
+
+
+<style>
+
+tbody {
+    display:block;
+    height:445px;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+
+
+</style>
+
 <div class="container">
     <div class="page-header">
         <h1>Analysis of {{ file_name }}</h1>
@@ -38,5 +56,16 @@ https://www.google.com/maps/search/?api=1&query=-24.690932,150.9439172&zoom=18&b
     <a href=/get-csv/{{ file_name }} >
       <button type="button" style="color:black">Download Results</button> 
     </a>
+    
+    <a href=/warning/{{ file_name }} >
+      <button type="button" style="float: right;color:rgb(255, 156, 64)">Warning</button> 
+    </a>
+    <a href=/info/{{ file_name }} >
+      <button type="button" style="float: right;color:rgb(106, 182, 253)">Info</button> 
+    </a>
+    <a href=/success/{{ file_name }}>
+      <button type="button" style="float: right;color:rgb(26, 194, 96)">Success</button> 
+    </a>
+    
 </div>
 {% endblock %}
