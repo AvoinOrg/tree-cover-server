@@ -6,6 +6,14 @@
 {% block page_content %}
 <div class="page-header">
     <h1>CSV upload</h1>
+    <div>
+        <ul>
+            <li> In order to fetch the sentinel datapoints, only the columns <i>longitude, latitude</i> and
+                <i>Aridity_zone</i> must be present. This is only feasible for a small number of datapoints.
+                <i>plot_id</i> may also be specified manually.</li>
+            <li> Alternatively, a CSV containing the above columns and the necessary features can be uploaded.</li>
+        </ul>
+    </div>
 </div>
 {{ wtf.quick_form(form) }}
 

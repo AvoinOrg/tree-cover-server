@@ -2,17 +2,15 @@ import pandas as pd
 import numpy as np
 from joblib import load
 
-#models
-model_path = "tree-cover/model_landsat_median_sds.joblib"
-#model_path_2 = "tree-cover/model.joblib"
-model_path_2 = "tree-cover/model_sentinel_logtrans_stratifi.joblib"
+model_path = "tree-cover/model_sentinel_logtrans_stratified_huber_3months_2000_60leaves.joblib"
+model_path_2 = "tree-cover/model_landsat_median_sds.joblib"
 diff_to_colour = {0.0: "success", 0.1: "success", 0.2: "info", 0.3: "info", 0.4: "warning", 0.5: "warning"}
 
 
 def process_file(file, choice):
     data = pd.read_csv(file)
     
-    if choice != "Model2":
+    if choice == "Model2":
         regions = ["CentralAsia","EastSouthAmerica","Europe","HornAfrica","MiddleEast","NorthAmerica","NorthernAfrica","Sahel","SouthWestAsia","SouthernAfrica","WestSouthAmerica"]
         aridity = ["Dry subhumid","Hyperarid","Semiarid"]
         for i in regions:
@@ -23,7 +21,7 @@ def process_file(file, choice):
 
         data = data.drop(["dryland_assessment_region"], axis=1)
         data = data.drop(["Aridity_zone"], axis=1)
-    
+
     data["predicted"] = get_prediction(data, choice)  # np.round(np.random.rand(len(data), 1), 3)
     data["predicted"] = np.round(1/(1+np.exp(-data["predicted"])),2)
     for key in ["longitude", "latitude"]:
@@ -31,7 +29,6 @@ def process_file(file, choice):
     data["diff"] = data.apply(lambda row: np.round(np.abs(row["tree_cover"] - row["predicted"]), 1), axis=1)
     data["class"] = data.apply(lambda row: diff_to_colour.get(row["diff"], "danger"), axis=1)
     data.sort_values(by="diff", inplace=True, ascending=False)
-    print(data)
     return data[["class", "plot_id", "longitude", "latitude", "tree_cover", "predicted"]]
 
 
@@ -60,13 +57,10 @@ def get_prediction(data, choice):
     
     excluded_cols = ['longitude','latitude','dryland_assessment_region','land_use_category','tree_cover', 'plot_id']
     
-
-    if choice == "Model2":
-        model = load(model_path_2)
+    if choice == "Model1":
+        model = load(model_path)
         data.Aridity_zone = pd.Categorical(data.Aridity_zone)
-        #print(data.head(1))
         return np.round(model.predict(data[data.columns.difference(excluded_cols)]), 3)
     else:
-        model = load(model_path)
-    
-    return np.round(model.predict(data[feat]), 3)
+        model = load(model_path_2)
+        return np.round(model.predict(data[feat]), 3)

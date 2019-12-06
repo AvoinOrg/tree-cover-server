@@ -14,9 +14,6 @@ from flask import request
 @main.route("/", methods=["GET", "POST"])  # or e.g. /upload if want other home page
 def index():
     form = FileForm()
-    
-    if form.choice.data == "Model1":
-        print("oh yesss")
     choice = form.choice.data
     
     if form.validate_on_submit():
@@ -31,9 +28,7 @@ def index():
             d = process_file(f_path, choice)
             dpath = os.path.join("files","results_" +session["file_name"])
             d.to_csv(dpath)
-            
-            flash("You have uploaded a file!")
-            
+
             dan = str(len(d[d['class'] == 'danger']))
             inf = str(len(d[d['class'] == 'info']))
             war = str(len(d[d['class'] == 'warning']))
@@ -53,7 +48,7 @@ def get_csv(csv_id):
     csv_name = "results_"+csv_id
     csv = os.path.abspath("files")
 
-    print(csv_name)
+    # print(csv_name)
     try:
         
         return send_from_directory(csv, filename=csv_name, as_attachment=True)
