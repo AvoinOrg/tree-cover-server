@@ -58,18 +58,21 @@ thead, tbody tr {
     <a href="/{{ discrep }}/{{ file_name }}/down">
       <button type="button" style="color:black">Download Partial Results</button> 
     </a>
-
+    
+    <a href=/danger/{{ file_name }} >
+      <button type="button" style="float: right;color:rgb(220,20,60)">Danger {{ dang }}</button> 
+    </a>
     <a href=/warning/{{ file_name }} >
-      <button type="button" style="float: right;color:rgb(255, 156, 64)">Warning</button> 
+      <button type="button" style="float: right;color:rgb(255, 156, 64)">Warning {{ warn }}</button> 
     </a>
     <a href=/info/{{ file_name }} >
-      <button type="button" style="float: right;color:rgb(106, 182, 253)">Info</button> 
+      <button type="button" style="float: right;color:rgb(106, 182, 253)">Info {{ info }}</button> 
     </a>
     <a href=/success/{{ file_name }}>
-      <button type="button" style="float: right;color:rgb(26, 194, 96)">Success</button> 
+      <button type="button" style="float: right;color:rgb(26, 194, 96)">Success {{ succ }}</button> 
     </a>
     <a href="/complete/{{ file_name }}">
-      <button type="button" style="float: right;color:rgb(0, 0, 0)">Complete</button> 
+      <button type="button" style="float: right;color:rgb(0, 0, 0)">Complete {{ comp }}</button> 
     </a>
 
     
