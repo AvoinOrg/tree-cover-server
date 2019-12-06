@@ -1,6 +1,6 @@
 import os
 
-from flask import render_template, session, redirect, url_for, flash, current_app
+from flask import render_template, session, flash
 
 from . import main
 from .forms import FileForm
@@ -9,7 +9,6 @@ from werkzeug.utils import secure_filename
 
 from flask import send_from_directory
 import pandas as pd
-from flask import request
 
 @main.route("/", methods=["GET", "POST"])  # or e.g. /upload if want other home page
 def index():

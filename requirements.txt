@@ -10,4 +10,5 @@ WTForms==2.2.1
 gunicorn==19.6.0
 lightgbm==2.3.1
 scikit-learn==0.21.3
+tqdm==4.40.1
 
