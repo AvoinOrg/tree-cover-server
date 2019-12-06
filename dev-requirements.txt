@@ -1,0 +1,4 @@
+black==19.10b0
+scikit-learn==0.21.3
+lightgbm==2.3.1
+
