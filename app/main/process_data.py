@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
-from treecover.retrieve_sentinel_csv import fetch_data
+from treecover.sentinel import fetch_data
 
 from joblib import load
 
-libsqlite_path = '../../treecover/libsqlitefunctions.so'
+libsqlite_path = 'treecover/libsqlitefunctions.so'
 model_path = "treecover/model_sentinel_logtrans_stratified_huber_3months_2000_60leaves.joblib"
 model_path_2 = "treecover/model_landsat_median_sds.joblib"
 diff_to_colour = {0.0: "success", 0.1: "success", 0.2: "info", 0.3: "info", 0.4: "warning", 0.5: "warning"}
