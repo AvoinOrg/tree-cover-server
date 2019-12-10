@@ -33,9 +33,7 @@ authenticated via `earthengine authenticate`. You can use the UI in two ways:
 2. Upload a CSV with already populated features by using the command line tool. Example: `treecover/data/example_server_sentinel_input.csv` or `example_input_file_landsat.csv`
 
 The webapp without working GEE retrieval can be viewed at: http://tree-cover.herokuapp.com/
-In order to use the submodule, [this buildback](https://elements.heroku.com/buildpacks/timvanmourik/heroku-buildpack-git-submodule) is used: 
-
-
+Note that Heroku deployment only works with submodules when pushing from the command line.
 
 
 #### command line tool for data retrieval
