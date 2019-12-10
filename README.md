@@ -15,11 +15,16 @@ cd ..
 ```
 
 #### launch server
-For local development, run:
+For local development in debug mode, run:
 ```bash
 export FLASK_APP=server.py
 export FLASK_DEBUG=1
 flask run
+```
+
+For production use, you can use:
+```bask
+gunicorn wsgi:app
 ```
 
 If you get an import error for `flask_bootstrap`, try `deactivate` and `source venv/bin/activate` again. Ensure that you're
@@ -27,7 +32,9 @@ authenticated via `earthengine authenticate`. You can use the UI in two ways:
 1. Upload a _small_ CSV file with the columns `longitude`, `latitude`, `Aridity_Zone` and optionally a `plot_id`. An example is given in `treecover/data/example_fetch_sentinel_input.csv`.
 2. Upload a CSV with already populated features by using the command line tool. Example: `treecover/data/example_server_sentinel_input.csv` or `example_input_file_landsat.csv`
 
-An earlier version without GEE retrieval can be viewed at: http://tree-cover-server.herokuapp.com/ 
+The webapp without working GEE retrieval can be viewed at: http://tree-cover.herokuapp.com/ 
+
+
 
 
 #### command line tool for data retrieval
