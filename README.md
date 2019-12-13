@@ -1,4 +1,5 @@
 ## Installation
+Ensure that you have a C compiler (`gcc`), `git`, [virtualenv](https://virtualenv.pypa.io/en/stable/) and its required dependencies installed. The versions from the system reposity on Ubuntu 18.04 are sufficient.
 
 ```bash
 git clone --recurse-submodules https://github.com/LyteFM/tree-cover-server.git
@@ -23,7 +24,7 @@ flask run
 ```
 
 For production use, you can use:
-```bask
+```bash
 gunicorn wsgi:app
 ```
 
@@ -32,7 +33,7 @@ authenticated via `earthengine authenticate`. You can use the UI in two ways:
 1. Upload a _small_ CSV file with the columns `longitude`, `latitude`, `Aridity_Zone` and optionally a `plot_id`. An example is given in `treecover/data/example_fetch_sentinel_input.csv`.
 2. Upload a CSV with already populated features by using the command line tool. Example: `treecover/data/example_server_sentinel_input.csv` or `example_input_file_landsat.csv`
 
-The webapp without working GEE retrieval can be viewed at: http://tree-cover.herokuapp.com/
+The webapp _without GEE retrieval_ can be viewed at: http://tree-cover.herokuapp.com/
 Note that Heroku deployment only works with submodules when pushing from the command line.
 
 
