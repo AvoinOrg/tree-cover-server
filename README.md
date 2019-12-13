@@ -1,5 +1,5 @@
 ## Installation
-Ensure that you have a C compiler (`gcc`), `git`, [virtualenv](https://virtualenv.pypa.io/en/stable/) and its required dependencies installed. The versions from the system reposity on Ubuntu 18.04 are sufficient.
+Ensure that you have a C compiler (`gcc`), `git`, [virtualenv](https://virtualenv.pypa.io/en/stable/) and its required dependencies installed. The versions from the system reposity on Ubuntu 18.04 are sufficient. Then, this repository can be installed via:
 
 ```bash
 git clone --recurse-submodules https://github.com/LyteFM/tree-cover-server.git
